@@ -36,19 +36,19 @@ class CPM_Nanopub_Converter < RDF_Nanopub_Converter
     p_value = sprintf('%.3E', tokens[5]).to_f # round it to 3 significant digit
 
     if concept2_id == 'null'
-      @logger.info("row #{@row_index.to_s} has no gene id. skipped.")
+      @logger.info("line #{@line_number.to_s} has no gene id. skipped.")
       @no_null_genes += 1
       return
     end
 
     if concept1_id == 'null'
-      @logger.info("row #{@row_index.to_s} has no omim id. skipped.")
+      @logger.info("line #{@line_number.to_s} has no omim id. skipped.")
       @no_null_omims += 1
       return
     end
 
     if p_value > @options[:p_value_cutoff].to_f
-      @logger.warning("** row #{@row_index.to_s} has a p-value greater than #{@options[:p_value_cutoff]}. skipped. **")
+      @logger.warning("** line #{@line_number.to_s} has a p-value greater than #{@options[:p_value_cutoff]}. skipped. **")
       return
     end
 
